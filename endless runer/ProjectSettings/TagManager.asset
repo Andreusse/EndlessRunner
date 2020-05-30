@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - backgrond
+  - 
+  - hero
+  - flor
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1829967107
+    locked: 0
+  - name: flor
+    uniqueID: 541628679
+    locked: 0
+  - name: Rooms
+    uniqueID: 3714248845
+    locked: 0
+  - name: Wall on rooms and doors
+    uniqueID: 4245430785
+    locked: 0
+  - name: fences
+    uniqueID: 3226525331
+    locked: 0
