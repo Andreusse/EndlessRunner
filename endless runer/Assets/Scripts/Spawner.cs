@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
 
 
 
-        spawnRate = 8f;
+        spawnRate = 6f;
         timeSinceLastSpawned = 0f;
         Box = new GameObject[PoolSize];
         Door = new GameObject[PoolSize];
@@ -110,7 +110,6 @@ public class Spawner : MonoBehaviour
                                 float spawnYPosition = -2.89f;
                                 float spawnXPosition = 30f;
                                 RandomsBarrier(spawnXPosition, spawnYPosition);
-                                spawnRate = 4f;
                             }
 
                             break;
@@ -121,7 +120,6 @@ public class Spawner : MonoBehaviour
                                 float spawnYPosition = -2.89f;
                                 float spawnXPosition = 30f;
                                 RandomsBarrier(spawnXPosition, spawnYPosition);
-                                spawnRate = 4f;
                             }
                             break;
                         case 2:
@@ -131,7 +129,6 @@ public class Spawner : MonoBehaviour
                                 float spawnYPosition = -2.89f;
                                 float spawnXPosition = 30f;
                                 RandomsBarrier(spawnXPosition, spawnYPosition);
-                                spawnRate = 4f;
                             }
                             break;
                     }
@@ -150,115 +147,48 @@ public class Spawner : MonoBehaviour
             
             if (timeSinceLastSpawned >= spawnRate)
             {
-
-                int CountOHouse = rand.Next(0, 4);
-                for (int i = 0; i < CountOHouse; i++)
+                timeSinceLastSpawned = 0f;
+                spawnYPosition = 0.02f;
+                float spawnXPosition = 30f;
+                RandomsRoom(spawnXPosition, spawnYPosition);
+                WinorDor = rand.Next(0, 2);
+                spawnRate = 4.5f;
+                if (WinorDor == 0)
                 {
-                    spawnRate = 0f;
-                    int chan = i;
-                    timeSinceLastSpawned += Time.deltaTime+1f;
-                    switch (chan)
+                    Window[currentWindow].transform.position = new Vector2(spawnXPosition - 12.2f, spawnYPosition);
+                    currentWindow++;
+                    if (currentWindow >= PoolSize)
                     {
-                        case 0:
-                            {
-                                
-                                if (timeSinceLastSpawned >= spawnRate)
-                                {
-                                    timeSinceLastSpawned =0f;
-                                    spawnYPosition = 0.02f;
-                                   float spawnXPosition = 30f;
-                                    RandomsRoom(spawnXPosition, spawnYPosition);
-                                    WinorDor = rand.Next(0, 2);
-                                    spawnRate = 6f;
-                                    if (WinorDor == 0)
-                                    {
-                                        Window[currentWindow].transform.position = new Vector2(spawnXPosition - 12.2f, spawnYPosition);
-                                        currentWindow++;
-                                        if (currentWindow >= PoolSize)
-                                        {
-                                            currentWindow = 0;
-                                        }
-                                    }
-                                    else if (WinorDor == 1)
-                                    {
-                                        Door[currentDoor].transform.position = new Vector2(spawnXPosition - 12.2f, spawnYPosition);
-                                        currentDoor++;
-                                        if (currentDoor >= PoolSize)
-                                        {
-                                            currentDoor = 0;
-                                        }
-                                    }
-                                    Door[currentDoor].transform.position = new Vector2(spawnXPosition + 12.2f, spawnYPosition);
-                                    currentDoor++;
-                                    if (currentDoor >= PoolSize)
-                                    {
-                                        currentDoor = 0;
-                                    }
-
-                                }
-
-
-                                break;
-                            }
-                        case 1:
-                            {
-                                if (timeSinceLastSpawned >= spawnRate)
-                                {
-                                    timeSinceLastSpawned = 0f;
-                                    spawnYPosition = 0.02f;
-                                    float spawnXPosition = 30f + 24.83f;
-                                    RandomsRoom(spawnXPosition, spawnYPosition);
-                                    spawnRate = 8f;
-
-                                    Door[currentDoor].transform.position = new Vector2(spawnXPosition + 12.2f, spawnYPosition);
-                                    currentDoor++;
-                                    if (currentDoor >= PoolSize)
-                                    {
-                                        currentDoor = 0;
-                                    }
-                                    
-                                }
-                                break;
-                            }
-                        case 2:
-                            {
-                                if (timeSinceLastSpawned >= spawnRate)
-                                {
-                                    timeSinceLastSpawned = 0f;
-                                    spawnYPosition = 0.02f;
-                                    float spawnXPosition = 30f + 24.83f+ 24.83f;
-                                    RandomsRoom(spawnXPosition, spawnYPosition);
-                                    spawnRate = 8f;
-                                    WinorDor = rand.Next(0, 2);
-                                    if (WinorDor == 0)
-                                    {
-                                        Window[currentWindow].transform.position = new Vector2(spawnXPosition + 12.2f, spawnYPosition);
-                                        currentWindow++;
-                                        if (currentWindow >= PoolSize)
-                                        {
-                                            currentWindow = 0;
-                                        }
-                                    }
-                                    else if(WinorDor == 1)
-                                    {
-                                        Door[currentDoor].transform.position = new Vector2(spawnXPosition + 12.2f, spawnYPosition);
-                                        currentDoor++;
-                                        if (currentDoor >= PoolSize)
-                                        {
-                                            currentDoor = 0;
-                                        }
-                                    }
-                                }
-
-                                break;
-
-                            }
-
+                      currentWindow = 0;
                     }
-                    
                 }
-                
-
+                else if (WinorDor == 1)
+                {
+                    Door[currentDoor].transform.position = new Vector2(spawnXPosition - 12.2f, spawnYPosition);
+                    currentDoor++;
+                    if (currentDoor >= PoolSize)
+                    {
+                        currentDoor = 0;
+                    }
+                }
+                if (WinorDor == 0)
+                {
+                    Window[currentWindow].transform.position = new Vector2(spawnXPosition + 12.2f, spawnYPosition);
+                    currentWindow++;
+                    if (currentWindow >= PoolSize)
+                    {
+                        currentWindow = 0;
+                    }
+                }
+                else if (WinorDor == 1)
+                {
+                    Door[currentDoor].transform.position = new Vector2(spawnXPosition + 12.2f, spawnYPosition);
+                    currentDoor++;
+                    if (currentDoor >= PoolSize)
+                    {
+                        currentDoor = 0;
+                    }
+                }
             }
         }
     }
